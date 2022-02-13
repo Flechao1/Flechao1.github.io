@@ -20,30 +20,40 @@
     var CONFIG = {"hostname":"flechao1.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="爱意东升西落，浪漫至死不渝">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Flechao1&#39;blog">
-<meta property="og:url" content="https://flechao1.github.io/index.html">
+  <meta name="description" content="逆向PYC文件简介¶ 不说废话,这里说的pyc文件就是 Python 程序编译后得到的字节码文件 (py-&gt;pyc).基本格式¶ pyc文件一般由3个部分组成: 最开始4个字节是一个Maigc int, 标识此pyc的版本信息, 不同的版本的 Magic 都在 Python&#x2F;import.c 内定义 接下来四个字节还是个int,是pyc产生的时间(1970.01.01到产生pyc时候的秒数)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reverse">
+<meta property="og:url" content="https://flechao1.github.io/2022/02/13/Reverse/index.html">
 <meta property="og:site_name" content="Flechao1&#39;blog">
-<meta property="og:description" content="爱意东升西落，浪漫至死不渝">
+<meta property="og:description" content="逆向PYC文件简介¶ 不说废话,这里说的pyc文件就是 Python 程序编译后得到的字节码文件 (py-&gt;pyc).基本格式¶ pyc文件一般由3个部分组成: 最开始4个字节是一个Maigc int, 标识此pyc的版本信息, 不同的版本的 Magic 都在 Python&#x2F;import.c 内定义 接下来四个字节还是个int,是pyc产生的时间(1970.01.01到产生pyc时候的秒数)">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220116115745622.png">
+<meta property="og:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220116214031880.png">
+<meta property="og:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220116214118994.png">
+<meta property="og:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220116214645657.png">
+<meta property="og:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220205141711713.png">
+<meta property="og:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220205141743003.png">
+<meta property="article:published_time" content="2022-02-13T02:31:23.000Z">
+<meta property="article:modified_time" content="2022-02-13T02:33:45.863Z">
 <meta property="article:author" content="Mua王叔叔">
+<meta property="article:tag" content="逆向之路长慢慢">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20220116115745622.png">
 
-<link rel="canonical" href="https://flechao1.github.io/">
+<link rel="canonical" href="https://flechao1.github.io/2022/02/13/Reverse/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Flechao1'blog</title>
+  <title>Reverse | Flechao1'blog</title>
   
 
 
@@ -141,9 +151,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -159,10 +170,9 @@
       <meta itemprop="name" content="Flechao1'blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/Reverse/" class="post-title-link" itemprop="url">Reverse</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Reverse
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -186,7 +196,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h1><p>PYC文件简介¶</p>
+        <h1 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h1><p>PYC文件简介¶</p>
 <p>不说废话,这里说的pyc文件就是 Python 程序编译后得到的字节码文件 (py-&gt;pyc).<br>基本格式¶</p>
 <p>pyc文件一般由3个部分组成:</p>
 <pre><code>最开始4个字节是一个Maigc int, 标识此pyc的版本信息, 不同的版本的 Magic 都在 Python/import.c 内定义
@@ -295,148 +305,33 @@ Hosted on DreamHost
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">decrypt</span> <span class="params">(<span class="type">uint32_t</span>* v, <span class="type">uint32_t</span>* k)</span> &#123;</span><br><span class="line">    <span class="type">uint32_t</span> delta=<span class="number">0x12345678</span>;</span><br><span class="line">    <span class="type">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], sum=delta * <span class="number">32</span>, i;</span><br><span class="line">    <span class="type">uint32_t</span> k0=k[<span class="number">0</span>], k1=k[<span class="number">1</span>], k2=k[<span class="number">2</span>], k3=k[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++) &#123;</span><br><span class="line">        v1 -= sum ^ ((v0&lt;&lt;<span class="number">4</span>) + k0) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k1);</span><br><span class="line">        v0 -= sum ^ ((v1&lt;&lt;<span class="number">4</span>) + k2) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k3);</span><br><span class="line">        sum -= delta;</span><br><span class="line">    &#125;</span><br><span class="line">    v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> v[]=&#123;<span class="number">1222194312u</span>, <span class="number">51123276u</span>, <span class="number">1391163586u</span>, <span class="number">3986482669u</span>, <span class="number">2921328102u</span>, <span class="number">3126465133u</span>, <span class="number">3482485930u</span>, <span class="number">1709241059u</span>&#125;,k[<span class="number">4</span>]=&#123;<span class="number">0x44434241</span>,<span class="number">0x48474645</span>,<span class="number">0x4c4b4a49</span>,<span class="number">0x504f4e4d</span>&#125;;</span><br><span class="line">    decrypt(v, k);</span><br><span class="line">    decrypt(v + <span class="number">2</span>, k);</span><br><span class="line">    decrypt(v + <span class="number">4</span>, k);</span><br><span class="line">    decrypt(v + <span class="number">8</span>, k);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, v);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E9%80%86%E5%90%91%E4%B9%8B%E8%B7%AF%E9%95%BF%E6%85%A2%E6%85%A2/" rel="tag"># 逆向之路长慢慢</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://flechao1.github.io/2022/02/13/PWN/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mua王叔叔">
-      <meta itemprop="description" content="爱意东升西落，浪漫至死不渝">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flechao1'blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/PWN/" class="post-title-link" itemprop="url">PWN</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 10:25:04" itemprop="dateCreated datePublished" datetime="2022-02-13T10:25:04+08:00">2022-02-13</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/13/PWN/" rel="prev" title="PWN">
+      <i class="fa fa-chevron-left"></i> PWN
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://flechao1.github.io/2022/02/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mua王叔叔">
-      <meta itemprop="description" content="爱意东升西落，浪漫至死不渝">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flechao1'blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/12/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-12 17:17:34" itemprop="dateCreated datePublished" datetime="2022-02-12T17:17:34+08:00">2022-02-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -489,6 +384,7 @@ Hosted on DreamHost
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%86%E5%90%91"><span class="nav-number">1.</span> <span class="nav-text">逆向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E6%B5%AA%E8%80%85-XCTF"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">流浪者-XCTF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#babyre%E2%80%93XCTF"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">babyre–XCTF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ctfshow%E2%80%93re2"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">ctfshow–re2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ctfshow%E2%80%93%E9%80%86%E5%90%914"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">ctfshow–逆向4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#asm%E9%80%86%E5%90%91%EF%BC%9A-1%E6%9D%A1%E6%B6%88%E6%81%AF-%E9%80%86%E5%90%91%E5%9F%BA%E7%A1%80%E2%80%94ASM%E7%BB%93%E6%9E%84%E4%BB%A3%E7%A0%81%E8%AF%86%E5%88%AB-Leon-%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">asm逆向：(1条消息) 逆向基础—ASM结构代码识别_Leon~博客-CSDN博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA%EF%BC%9A%E5%8F%82%E6%95%B0n%E7%9A%84%E5%88%86%E8%A7%A3%E7%BD%91%E7%AB%99-1%E6%9D%A1%E6%B6%88%E6%81%AF-%E5%B7%A5%E5%85%B7%E6%B3%95-%E5%88%86%E8%A7%A3-RSA-%E7%9A%84-n-ashen%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2-rsa%E5%88%86%E8%A7%A3n"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">RSA：参数n的分解网站(1条消息) 工具法: 分解 RSA 的 n_ashen的博客-CSDN博客_rsa分解n</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HGAME-Level-Week2-upx-magic-0"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">HGAME_Level-Week2-upx magic 0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HGAME-Week1-Creakme"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">HGAME_Week1_Creakme</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
