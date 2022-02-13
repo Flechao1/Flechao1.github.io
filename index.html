@@ -172,7 +172,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-13 10:31:23 / 修改时间：10:38:17" itemprop="dateCreated datePublished" datetime="2022-02-13T10:31:23+08:00">2022-02-13</time>
+              <time title="创建时间：2022-02-13 10:45:33 / 修改时间：10:47:47" itemprop="dateCreated datePublished" datetime="2022-02-13T10:45:33+08:00">2022-02-13</time>
             </span>
 
           
@@ -225,7 +225,7 @@ co_lnotab : PyStringObject(‘s’),指令与行号的对应表
 <p>#test.py<br>import struct</p>
 <p>def abc(c):<br>    a&#x3D;1<br>    b&#x3D;2<br>    return struct.pack(“S”,a+b+c)</p>
 <p>var_a&#x3D;”abc”<br>var_b&#x3D;{var_a:123,”sec_key”:abc}</p>
-<p>它编译后对应的 pyc 在 magic 和 time 后就放着一个 PyCodeObject 对象, 这个对象的个字段指如下<br>test.py对应PyCodeObject中各字段的值 字段    值    注释<br>co_argcount    0    模块没有参数<br>co_nlocals    0    模块没有局部变量<br>co_stacksize    3    栈最大尺寸<br>co_flags    64    CO_NOFREE<br>co_code    ‘dx00x00d…’    字节码序列<br>co_consts    (-1, None, another-code-obj…)    所有常量,包括模块里的 function,method<br>co_names    (‘struct’, ‘abc’, ‘var_a’, ‘var_b’)    此作用域内用到的所有符号<br>co_varnames    ()    局部变量名(模块没有局部变量)<br>co_freevars    ()    freevars<br>co_cellvars    ()    cellvars<br>co_filename    test.py    源码文件名<br>co_name    ‘<module>’    code名字,模块名都是<module>,class是类名,func是函数名<br>co_firstlineno    3    此code对应作用域的第一行的行号<br>co_lnotab    ‘x0cx02tx05x06x01’    行号表</p>
+<p>它编译后对应的 pyc 在 magic 和 time 后就放着一个 PyCodeObject 对象, 这个对象的个字段指如下<br>test.py对应PyCodeObject中各字段的值 字段    值    注释<br>co_argcount    0    模块没有参数<br>co_nlocals    0    模块没有局部变量<br>co_stacksize    3    栈最大尺寸<br>co_flags    64    CO_NOFREE<br>co_code    ‘dx00x00d…’    字节码序列<br>co_consts    (-1, None, another-code-obj…)    所有常量,包括模块里的 function,method<br>co_names    (‘struct’, ‘abc’, ‘var_a’, ‘var_b’)    此作用域内用到的所有符号<br>co_varnames    ()    局部变量名(模块没有局部变量)<br>co_freevars    ()    freevars<br>co_cellvars    ()    cellvars<br>co_filename    test.py    源码文件名<br>co_name    ‘<module>’    code名字,模块名都是<module>,class是类名,func是函数名<br>co_firstlineno    3    此code对应作用域的第一行的行号<br>co_lnotab    ‘x0cx02tx05x06x01’    行号表</module></module></p>
 <p>这其中的 co_consts 里面的第三个元素是function abc的PyCodeObject, 我们来看下function abc的code的各字段:<br>function abc 对应PyCodeObject中各字段的值 字段    值    注释<br>co_argcount    1    1个参数c<br>co_nlocals    3    1个参数c, 两个局部变量a,b<br>co_stacksize    4    栈最大尺寸<br>co_flags    67    CO_OPTIMIZATION | CO_NEWLOCALS | CO_NOFREE<br>co_code    ‘dx01x00}…’    字节码序列<br>co_consts    (None, 1, 2, ‘S’)    函数里用到的所有常量<br>co_names    (‘struct’, ‘pack’)    此作用域内用到的所有符号<br>co_varnames    (‘c’, ‘a’, ‘b’)    局部变量名<br>co_freevars    ()    freevars<br>co_cellvars    ()    cellvars<br>co_filename    test.py    源码文件名<br>co_name    ‘abc’    code名字,func是函数名<br>co_firstlineno    5    此code对应作用域的第一行的行号<br>co_lnotab    ‘x00x01x06x01x06x01’    行号表<br>图解 test.py 与 test.pyc 的结构关系¶</p>
 <p>..&#x2F;_images&#x2F;pyc_format_example_0.png<br>co_freevars 与 co_cellvars¶</p>
 <p>这两个字段是给 Closure 准备的(Python里没有真正的Closure),通俗的说就是函数嵌套的时候用的到,比如:</p>
@@ -257,7 +257,7 @@ Hosted on DreamHost
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file cm.exe</span><br><span class="line">cm.exe: PE32 executable (GUI) Intel 80386, for MS Windows</span><br></pre></td></tr></table></figure>
 
 <p>运行一下文件看看是什么：是一个窗口，让我们输入密码，然后验证对不对。</p>
-<p><img src="E:\Blog\source\file\reverse\image-20220116115745622.png" alt="image-20220116115745622"></p>
+<p><img src="/2022/02/13/Reverse/Blog\source_posts\Reverse\image-20220116115745622.png" alt="image-20220116115745622"></p>
 <p>放进IDA中进行反汇编：先查看字符，根据关键字符串跟进函数。</p>
 <p>找到了：请输入pass，这个字符串点进去，ctrl+x快捷键跟进。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> __thiscall <span class="title">sub_401890</span><span class="params">(CWnd *<span class="keyword">this</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">CString</span> *v1; <span class="comment">// ST08_4</span></span><br><span class="line">  CWnd *v2; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">int</span> v5[<span class="number">26</span>]; <span class="comment">// [esp+4Ch] [ebp-74h]</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [esp+B4h] [ebp-Ch]</span></span><br><span class="line">  <span class="type">char</span> *Str; <span class="comment">// [esp+B8h] [ebp-8h]</span></span><br><span class="line">  CWnd *v8; <span class="comment">// [esp+BCh] [ebp-4h]</span></span><br><span class="line"></span><br><span class="line">  v8 = <span class="keyword">this</span>;</span><br><span class="line">  v1 = (<span class="keyword">this</span> + <span class="number">100</span>);</span><br><span class="line">  v2 = CWnd::<span class="built_in">GetDlgItem</span>(<span class="keyword">this</span>, <span class="number">1002</span>);</span><br><span class="line">  CWnd::<span class="built_in">GetWindowTextA</span>(v2, v1);<span class="comment">//获取窗口输入的字符串</span></span><br><span class="line">  v3 = <span class="built_in">sub_401A30</span>(v8 + <span class="number">100</span>);</span><br><span class="line">  Str = CString::<span class="built_in">GetBuffer</span>((v8 + <span class="number">100</span>), v3);</span><br><span class="line">  <span class="keyword">if</span> ( !<span class="built_in">strlen</span>(Str) )</span><br><span class="line">    <span class="keyword">return</span> CWnd::<span class="built_in">MessageBoxA</span>(v8, <span class="string">&quot;请输入pass!&quot;</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; Str[i]; ++i ) <span class="comment">//for循环对字符串中的每个字符进行改变。</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( Str[i] &gt; <span class="number">57</span> || Str[i] &lt; <span class="number">48</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( Str[i] &gt; <span class="number">122</span> || Str[i] &lt; <span class="number">97</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( Str[i] &gt; <span class="number">90</span> || Str[i] &lt; <span class="number">65</span> )</span><br><span class="line">          <span class="built_in">sub_4017B0</span>();</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          v5[i] = Str[i] - <span class="number">29</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        v5[i] = Str[i] - <span class="number">87</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      v5[i] = Str[i] - <span class="number">48</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">sub_4017F0</span>(v5);</span><br><span class="line">&#125;<span class="comment">//三个if语句，比较输入字符串中的各个字符。然后对v5数组进行赋值。</span></span><br></pre></td></tr></table></figure>
@@ -270,14 +270,14 @@ Hosted on DreamHost
 
 <h4 id="babyre–XCTF"><a href="#babyre–XCTF" class="headerlink" title="babyre–XCTF"></a>babyre–XCTF</h4><p>文件是六十四位ELF文件，放进IDA中。</p>
 <p>这里出现一点问题，这是做逆向以来没有遇到过的</p>
-<p><img src="E:\Blog\source\file\reverse\image-20220116214031880.png" alt="image-20220116214031880"></p>
+<p><img src="/2022/02/13/Reverse/Blog\source_posts\Reverse\image-20220116214031880.png" alt="image-20220116214031880"></p>
 <p>在F5对judge函数进行反汇编时，出现这个错误。</p>
-<p><img src="E:\Blog\source\file\reverse\image-20220116214118994.png" alt="image-20220116214118994"></p>
+<p><img src="/2022/02/13/Reverse/Users\shuai\AppData\Roaming\Typora\typora-user-images\image-20220116214118994.png" alt="image-20220116214118994"></p>
 <p>报错的原因是：在主函数中，对指向judge函数的指针地址进行异或操作，在调用时无法找到真正的函数地址。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="number">0x600b01</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">182</span>):</span><br><span class="line">  PatchByte((a+i),Byte(a+i)^<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
 
 <p>在IDA中运行脚本将函数的地址还原。</p>
-<p><img src="E:\Blog\source\file\reverse\image-20220116214645657.png" alt="image-20220116214645657"></p>
+<p><img src="/2022/02/13/Reverse/Blog\source_posts\Reverse\image-20220116214645657.png" alt="image-20220116214645657"></p>
 <p>这是judge函数，对输入的内容进行异或。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">passwd=[<span class="number">102</span>,<span class="number">109</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">127</span>,<span class="number">107</span>,<span class="number">55</span>,<span class="number">100</span>,<span class="number">59</span>,<span class="number">86</span>,<span class="number">96</span>,<span class="number">59</span>,<span class="number">110</span>,<span class="number">112</span>]</span><br><span class="line">flag=&#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">14</span>):</span><br><span class="line">    flag[i]=passwd[i]^i</span><br><span class="line">    text=<span class="built_in">chr</span>(flag[i])</span><br><span class="line">    <span class="built_in">print</span>(text,end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -287,140 +287,13 @@ Hosted on DreamHost
 <p> 出题人：0wl </p>
 <p>分值：150 </p>
 <p>这题因为放错了附件所以实际上是没有 upx 加壳的，ida 查看字符串可以定位到检验 flag 的地方 题目是静态编译的所以库函数没有符号信息，通过简单的辨别可以知道所对应的库函数 这里的加密是 crc16 ，可以通过爆破的方式得到 flag。</p>
-<p><img src="E:\Blog\source\file\reverse\image-20220205141711713.png" alt="image-20220205141711713"></p>
-<p><img src="E:\Blog\source\file\reverse\image-20220205141743003.png" alt="image-20220205141743003"></p>
+<p><img src="/2022/02/13/Reverse/Blog\source_posts\Reverse\image-20220205141711713.png" alt="image-20220205141711713"></p>
+<p><img src="/2022/02/13/Reverse/Blog\source_posts\Reverse\image-20220205141743003.png" alt="image-20220205141743003"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">text=[<span class="number">36200</span>,<span class="number">40265</span>,<span class="number">10770</span>,<span class="number">43802</span>,<span class="number">52188</span>,<span class="number">47403</span>,<span class="number">11826</span>,<span class="number">40793</span>,<span class="number">56781</span>,<span class="number">40265</span>,<span class="number">43274</span>,<span class="number">3696</span>,<span class="number">62927</span>,<span class="number">2640</span>,<span class="number">23285</span>,<span class="number">65439</span>,<span class="number">40793</span>,<span class="number">48395</span>,<span class="number">22757</span>,<span class="number">22757</span>,<span class="number">48923</span>,<span class="number">30887</span>,<span class="number">43802</span>,<span class="number">18628</span>,<span class="number">43274</span>,<span class="number">11298</span>,<span class="number">40793</span>,<span class="number">23749</span>,<span class="number">24277</span>,<span class="number">30887</span>,<span class="number">9842</span>,<span class="number">22165</span>]</span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">32</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0x2e</span>,<span class="number">0x7e</span>):</span><br><span class="line">        crc=i</span><br><span class="line">        crc&lt;&lt;=<span class="number">8</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">            <span class="keyword">if</span> crc&amp;<span class="number">0x8000</span>!=<span class="number">0</span>:</span><br><span class="line">                crc&lt;&lt;=<span class="number">1</span></span><br><span class="line">                crc=crc^<span class="number">0x1021</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                crc&lt;&lt;=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> text[k]==crc&amp;<span class="number">0xffff</span>:</span><br><span class="line">         <span class="built_in">print</span>(<span class="built_in">chr</span>(i),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">         <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="HGAME-Week1-Creakme"><a href="#HGAME-Week1-Creakme" class="headerlink" title="HGAME_Week1_Creakme"></a><strong>HGAME_Week1_Creakme</strong></h4><p><strong>知识点：TEA算法</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">decrypt</span> <span class="params">(<span class="type">uint32_t</span>* v, <span class="type">uint32_t</span>* k)</span> &#123;</span><br><span class="line">    <span class="type">uint32_t</span> delta=<span class="number">0x12345678</span>;</span><br><span class="line">    <span class="type">uint32_t</span> v0=v[<span class="number">0</span>], v1=v[<span class="number">1</span>], sum=delta * <span class="number">32</span>, i;</span><br><span class="line">    <span class="type">uint32_t</span> k0=k[<span class="number">0</span>], k1=k[<span class="number">1</span>], k2=k[<span class="number">2</span>], k3=k[<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++) &#123;</span><br><span class="line">        v1 -= sum ^ ((v0&lt;&lt;<span class="number">4</span>) + k0) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="number">5</span>) + k1);</span><br><span class="line">        v0 -= sum ^ ((v1&lt;&lt;<span class="number">4</span>) + k2) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="number">5</span>) + k3);</span><br><span class="line">        sum -= delta;</span><br><span class="line">    &#125;</span><br><span class="line">    v[<span class="number">0</span>]=v0; v[<span class="number">1</span>]=v1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint32_t</span> v[]=&#123;<span class="number">1222194312u</span>, <span class="number">51123276u</span>, <span class="number">1391163586u</span>, <span class="number">3986482669u</span>, <span class="number">2921328102u</span>, <span class="number">3126465133u</span>, <span class="number">3482485930u</span>, <span class="number">1709241059u</span>&#125;,k[<span class="number">4</span>]=&#123;<span class="number">0x44434241</span>,<span class="number">0x48474645</span>,<span class="number">0x4c4b4a49</span>,<span class="number">0x504f4e4d</span>&#125;;</span><br><span class="line">    decrypt(v, k);</span><br><span class="line">    decrypt(v + <span class="number">2</span>, k);</span><br><span class="line">    decrypt(v + <span class="number">4</span>, k);</span><br><span class="line">    decrypt(v + <span class="number">8</span>, k);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, v);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://flechao1.github.io/2022/02/13/PWN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mua王叔叔">
-      <meta itemprop="description" content="爱意东升西落，浪漫至死不渝">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flechao1'blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/PWN/" class="post-title-link" itemprop="url">PWN</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 10:25:04" itemprop="dateCreated datePublished" datetime="2022-02-13T10:25:04+08:00">2022-02-13</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://flechao1.github.io/2022/02/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mua王叔叔">
-      <meta itemprop="description" content="爱意东升西落，浪漫至死不渝">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flechao1'blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/12/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-12 17:17:34" itemprop="dateCreated datePublished" datetime="2022-02-12T17:17:34+08:00">2022-02-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
@@ -502,13 +375,9 @@ Hosted on DreamHost
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
