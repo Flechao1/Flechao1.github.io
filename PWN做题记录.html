@@ -21,9 +21,9 @@
   </script>
 
   <meta name="description" content="PWN做题记录int_overflow(xctf)整数溢出原理整数分为有符号和无符号两种类型，有符号数以最高位作为其符号位，即正整数最高位为 1，负数为 0，无符号数取值范围为非负数，常见各类型占用字节数如下：    类型 占用字节 取值范围    int 4 -2147483648~2147483647   short int 2 -32768~32767   long int 4 -21474">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Flechao1&#39;blog">
-<meta property="og:url" content="https://flechao1.github.io/2022/02/13/PWN%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="https://flechao1.github.io/PWN%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95.html">
 <meta property="og:site_name" content="Flechao1&#39;blog">
 <meta property="og:description" content="PWN做题记录int_overflow(xctf)整数溢出原理整数分为有符号和无符号两种类型，有符号数以最高位作为其符号位，即正整数最高位为 1，负数为 0，无符号数取值范围为非负数，常见各类型占用字节数如下：    类型 占用字节 取值范围    int 4 -2147483648~2147483647   short int 2 -32768~32767   long int 4 -21474">
 <meta property="og:locale" content="zh_CN">
@@ -101,13 +101,13 @@
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/2504625/202111/2504625-20211122101332956-640865321.png">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/2504625/202111/2504625-20211122101450237-976654056.png">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/2504625/202111/2504625-20211122102003108-1742945690.png">
-<meta property="article:published_time" content="2022-02-13T02:13:42.655Z">
+<meta property="article:published_time" content="2022-02-06T08:37:32.994Z">
 <meta property="article:modified_time" content="2022-02-06T08:37:32.994Z">
 <meta property="article:author" content="Mua王叔叔">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="c:/Users/shuai/AppData/Roaming/Typora/typora-user-images/image-20210723150156669.png">
 
-<link rel="canonical" href="https://flechao1.github.io/2022/02/13/PWN%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="https://flechao1.github.io/PWN%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95">
 
 
 <script id="page-configurations">
@@ -115,12 +115,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title> | Flechao1'blog</title>
+  <title> | Flechao1'blog
+</title>
   
 
 
@@ -217,59 +218,33 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
-          <div class="content post posts-expand">
+          <div class="content page posts-expand">
             
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://flechao1.github.io/2022/02/13/PWN%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mua王叔叔">
-      <meta itemprop="description" content="爱意东升西落，浪漫至死不渝">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Flechao1'blog">
-    </span>
+    
+    
+    <div class="post-block" lang="zh-CN">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+<h1 class="post-title" itemprop="name headline">
+</h1>
 
-              <time title="创建时间：2022-02-13 10:13:42" itemprop="dateCreated datePublished" datetime="2022-02-13T10:13:42+08:00">2022-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-06 16:37:32" itemprop="dateModified" datetime="2022-02-06T16:37:32+08:00">2022-02-06</time>
-              </span>
+<div class="post-meta">
+  
 
-          
+</div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
-        <h1 id="PWN做题记录"><a href="#PWN做题记录" class="headerlink" title="PWN做题记录"></a>PWN做题记录</h1><h3 id="int-overflow-xctf"><a href="#int-overflow-xctf" class="headerlink" title="int_overflow(xctf)"></a>int_overflow(xctf)</h3><h4 id="整数溢出原理"><a href="#整数溢出原理" class="headerlink" title="整数溢出原理"></a>整数溢出原理</h4><p>整数分为有符号和无符号两种类型，有符号数以最高位作为其符号位，即正整数最高位为 1，负数为 0，无符号数取值范围为非负数，常见各类型占用字节数如下：</p>
+      
+      
+      <div class="post-body">
+          <h1 id="PWN做题记录"><a href="#PWN做题记录" class="headerlink" title="PWN做题记录"></a>PWN做题记录</h1><h3 id="int-overflow-xctf"><a href="#int-overflow-xctf" class="headerlink" title="int_overflow(xctf)"></a>int_overflow(xctf)</h3><h4 id="整数溢出原理"><a href="#整数溢出原理" class="headerlink" title="整数溢出原理"></a>整数溢出原理</h4><p>整数分为有符号和无符号两种类型，有符号数以最高位作为其符号位，即正整数最高位为 1，负数为 0，无符号数取值范围为非负数，常见各类型占用字节数如下：</p>
 <table>
 <thead>
 <tr>
@@ -874,32 +849,16 @@ execve的系统调用号是11，所以设置eax=0xb
 <h4 id="ctfshow–数学99"><a href="#ctfshow–数学99" class="headerlink" title="ctfshow–数学99"></a>ctfshow–数学99</h4><h4 id="整数溢出原理：-2条消息-整型的溢出详解-gao-zhennan的博客-CSDN博客-c语言整型数据的溢出"><a href="#整数溢出原理：-2条消息-整型的溢出详解-gao-zhennan的博客-CSDN博客-c语言整型数据的溢出" class="headerlink" title="整数溢出原理：(2条消息) 整型的溢出详解_gao_zhennan的博客-CSDN博客_c语言整型数据的溢出"></a>整数溢出原理：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gao_zhennan/article/details/120737492">(2条消息) 整型的溢出详解_gao_zhennan的博客-CSDN博客_c语言整型数据的溢出</a></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&quot;./pwn1&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">&quot;a:&quot;</span>,<span class="string">&quot;3&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">&quot;b:&quot;</span>,<span class="string">&quot;4294967290&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">&quot;a:&quot;</span>,<span class="string">&quot;19&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">&quot;b:&quot;</span>,<span class="string">&quot;1808407283&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">&quot;a:&quot;</span>,<span class="string">&quot;2147483648&quot;</span>)</span><br><span class="line">io.sendlineafter(<span class="string">&quot;b:&quot;</span>,<span class="string">&quot;-1&quot;</span>)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
 
 
+      </div>
+      
+      
+      
     </div>
+    
 
     
     
     
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2022/02/12/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
 
 
           </div>
